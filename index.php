@@ -21,34 +21,44 @@
 ?>
   <div id="filtros">
     <form name="filtro">
-      <label for="filtroArtista">Artista o grupo</label>
-      <select name="filtroArtista" id="filtroArtista" onchange="buscarCancion();">
-<?php
-        $sqlArtist = mysqli_query($conexion,"SELECT id,artista FROM partituras" . $andArtista . $andCancion);
-        while ($option = mysqli_fetch_object($sqlArtist))
-        {
-          echo '<option value="' . $option->id . '" ' . (($option->artista===$filtroArtista) ? 'selected' : '') .  '>' . $option->artista . '</option>';
-        }
-?>
-      </select>
-      <label for="filtroCancion">Canción</label>
-      <select name="filtroCancion" id="filtroCancion">
-<?php
-    $sqlCancion = mysqli_query($conexion,"SELECT id,cancion FROM partituras" . $andArtista . $andCancion);
-    while ($option = mysqli_fetch_object($sqlCancion))
-    {
-      echo '<option value="' . $option->id . '" ' . (($option->cancion===$filtroCancion) ? 'selected' : '') .  '>' . $option->cancion . '</option>';
-    }
-?>
-      </select>
-      <input type="button" id="btnBuscar"  class="start" onclick="" value="Buscar">
+      <div id="selectArt">
+        <label for="filtroArtista">Artista o grupo</label>
+        <select name="filtroArtista" id="filtroArtista" onchange="buscarCancion();">
+          <option value="0">Todos</option>
+  <?php
+          $sqlArtist = mysqli_query($conexion,"SELECT id,artista FROM partituras" . $andArtista . $andCancion . " GROUP BY artista");
+          while ($option = mysqli_fetch_object($sqlArtist))
+          {
+            echo '<option value="' . $option->artista . '" ' . (($option->artista===$filtroArtista) ? 'selected' : '') .  '>' . $option->artista . '</option>';
+          }
+  ?>
+        </select>
+      </div>
+      <div id="selectCan">
+        <label for="filtroCancion">Canción</label>
+        <select name="filtroCancion" id="filtroCancion">
+  <?php
+      $sqlCancion = mysqli_query($conexion,"SELECT id,cancion,artista FROM partituras" . $andArtista . $andCancion);
+      while ($option = mysqli_fetch_object($sqlCancion))
+      {
+        echo '<option value="' . $option->cancion . '" ' . (($option->cancion===$filtroCancion) ? 'selected' : '') .  '>' . $option->cancion . '</option>';
+      }
+  ?>
+        </select>
+      </div>
+      <input type="button" id="btnBuscar"  class="start" onclick="elegirCancion()" value="Buscar">
     </form>
   </div>
   <div id="botonera">
-    <input type="button" id="btnMenos"  class="start" onclick="" value="-">
-    <input type="button" id="btnScroll" class="start" onclick="toggleScroll()" value="Start/Stop">
-    <input type="button" id="btnMas"    class="start" onclick="" value="+">
-    <input type="button" id="btnReset"  class="start" onclick="" value="Reset">
+    <div id="divBtnScroll">
+      <input type="button" id="btnMenos"  class="start" onclick="" value="-">
+      <input type="button" id="btnScroll" class="start" onclick="toggleScroll()" value="Start/Stop">
+      <input type="button" id="btnMas"    class="start" onclick="" value="+">
+    </div>
+    <div id="divBtnReset">
+     <input type="button" id="btnReset"  class="start" onclick="" value="Reset">
+    </div>
+
   </div>
 
     <div id="partitura">
@@ -56,7 +66,3 @@
     </div>
   </body>
 </html>
-
-<script>
-  getTablatura();
-</script>

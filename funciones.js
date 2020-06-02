@@ -28,28 +28,27 @@ function pageScroll() {
     }
 }
 
-function getTablatura()
+function elegirCancion()
 {
+    var el = document.querySelector('#filtroCancion').value;
     var xHttp = new XMLHttpRequest();
     var parametros = {
-      param1: 'grabar'
+      param1: 'buscarCancion',
+      param2: el
     };
-
 
       xHttp.onreadystatechange = function()
       {
         if ((xHttp.readyState === 4) && (xHttp.status === 200))
         {
-
-
           var datos = JSON.parse(xHttp.responseText);
           console.log(datos[0]);
-          var tablatura = document.getElementById('partitura');
-          tablatura.innerHTML = datos[0].partitura;
+          var elemento = document.querySelector('#partitura');
+          elemento.innerHTML = datos[0].partitura;
         }
       }
 
-      xHttp.open('POST', 'http://estadisticas.dx.am/functionsPart.php?partitura=Cadillac solitario', true);
+      xHttp.open('POST', 'funciones.php', true);
       xHttp.setRequestHeader("Content-type", "application/json");
       xHttp.send(JSON.stringify(parametros));
 
@@ -70,8 +69,15 @@ function buscarCancion()
   {
     if ((xHttp.readyState === 4) && (xHttp.status === 200))
     {
-      var datos = (xHttp.responseText);
-      console.log(datos);
+      var elemento = document.querySelector('#filtroCancion');
+      console.log(xHttp.responseText);
+      var datos = JSON.parse(xHttp.responseText);
+      console.log(datos[0]['cancion']);
+      var textoSelect = '';
+      for (let i = 0; i < datos.length; i++) {
+        textoSelect  += '<option value="' +  datos[i]['cancion'] + '">' + datos[i]['cancion'] + '</option>';
+      }
+      elemento.innerHTML = textoSelect;
     }
   };
 
