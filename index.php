@@ -66,3 +66,11 @@
     </div>
   </body>
 </html>
+<script>
+(function(){
+  var velocidad_inicial = '100';
+  var position = '0';
+  localStorage.setItem('position', position);
+  localStorage.setItem('velocidad', velocidad_inicial);
+})();
+</script>

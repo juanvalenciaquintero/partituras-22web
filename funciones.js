@@ -19,7 +19,11 @@ function toggleScroll()
 }
 
 function pageScroll() {
-    var scrollBln = localStorage.getItem('scroll');
+  var scrollBln = localStorage.getItem('scroll');
+  var position =  localStorage.getItem('position');
+  var velocidad = localStorage.getItem('velocidad');
+  console.log('position: ' + position);
+  console.log('velocidad: ' + velocidad);
     console.log(scrollBln);
     if (scrollBln==='1')
     {
