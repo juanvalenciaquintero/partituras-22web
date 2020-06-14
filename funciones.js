@@ -27,9 +27,37 @@ function pageScroll() {
     console.log(scrollBln);
     if (scrollBln==='1')
     {
-        window.scrollBy(0,1);
-        scrolldelay = setTimeout(pageScroll,150);
+      window.scrollBy(0, 1);
+      localStorage.setItem('position', parseInt(position) +1);
+      scrolldelay = setTimeout(pageScroll,velocidad);
     }
+}
+
+function menosScroll()
+{
+  let velocidad = parseInt(localStorage.getItem('velocidad'));
+  localStorage.setItem('velocidad', (velocidad + 10).toString());
+  console.log(velocidad);
+}
+
+function masScroll()
+{
+  let velocidad = parseInt(localStorage.getItem('velocidad'));
+  localStorage.setItem('velocidad', (velocidad - 10).toString());
+  console.log(velocidad);
+}
+
+function resetScroll()
+{
+  var posicion = parseInt(localStorage.getItem('position'));
+  console.log(window.innerHeight+posicion);
+  window.scrollBy(0, -(window.innerHeight+posicion));
+  // window.scrollBy({
+  // top: -parseInt(posicion),
+  // left: 0,
+  // behaviour: 'smooth'
+  // })
+  localStorage.setItem('position', 0);
 }
 
 function elegirCancion()

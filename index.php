@@ -46,24 +46,28 @@
   ?>
         </select>
       </div>
-      <input type="button" id="btnBuscar"  class="start" onclick="elegirCancion()" value="Buscar">
+      <div>
+        <input type="button" id="btnBuscar"  class="start" onclick="elegirCancion()" value="Buscar">
+      </div>
     </form>
   </div>
-  <div id="botonera">
-    <div id="divBtnScroll">
-      <input type="button" id="btnMenos"  class="start" onclick="" value="-">
-      <input type="button" id="btnScroll" class="start" onclick="toggleScroll()" value="Start/Stop">
-      <input type="button" id="btnMas"    class="start" onclick="" value="+">
-    </div>
-    <div id="divBtnReset">
-     <input type="button" id="btnReset"  class="start" onclick="" value="Reset">
-    </div>
 
-  </div>
 
     <div id="partitura">
     <!-- <iframe  src="WISH YOU WHERE HERE.pdf#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="1500px"></iframe> -->
     </div>
+
+  <div id="botonera">
+    <div id="divBtnScroll">
+      <input type="button" id="btnMenos"  class="start" onclick="menosScroll()" value="-">
+      <input type="button" id="btnScroll" class="start" onclick="toggleScroll()" value="Start/Stop">
+      <input type="button" id="btnMas"    class="start" onclick="masScroll()" value="+">
+    </div>
+    <div id="divBtnReset">
+     <input type="button" id="btnReset"  class="start" onclick="resetScroll()" value="Reset">
+    </div>
+
+  </div>
   </body>
 </html>
 <script>
@@ -72,5 +76,7 @@
   var position = '0';
   localStorage.setItem('position', position);
   localStorage.setItem('velocidad', velocidad_inicial);
+  console.log('position: ' + position);
+  console.log('velocidad: ' + velocidad_inicial);
 })();
 </script>
