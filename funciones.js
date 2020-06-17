@@ -118,3 +118,29 @@ function buscarCancion()
   xHttp.setRequestHeader("Content-type", "application/json");
   xHttp.send(JSON.stringify(parametros));
 }
+
+function grabarPartitura()
+{
+  var artista = document.querySelector('#artista').value;
+  var cancion =document.querySelector('#cancion').value;
+  var partitura =document.querySelector('#partitura').value;
+  var xHttp = new XMLHttpRequest();
+  var parametros =
+  {
+    param1: 'grabar',
+    param2: artista,
+    param3: cancion,
+    param4: partitura
+  };
+  xHttp.onreadystatechange = function ()
+    {
+      if ((xHttp.readyState === 4) && (xHttp.status === 200))
+      {
+        alert('Partitura grabada');
+       window.location.href = 'http://partituras.22web.org/';
+      }
+    }
+  xHttp.open('POST', 'funciones.php', true);
+  xHttp.setRequestHeader("Content-type", "application/json");
+  xHttp.send(JSON.stringify(parametros));
+}

@@ -44,8 +44,11 @@ if (isset($request->param1) && ($request->param1==='buscarCancion'))
 
 if (isset($request->param1) && ($request->param1==='grabar'))
 {
-  $datos = $request->param2;
+  $artista = $request->param2;
+  $cancion = $request->param3;
+  $partitura = $request->param4;
 
+  $datos = preg_split('/\r?\n|\r/', $partitura);
   //Primero vemos cuantas filas tiene el fichero
   $filas = count($datos);
   $texto = '';
@@ -65,7 +68,7 @@ if (isset($request->param1) && ($request->param1==='grabar'))
     }
     $texto .='</p>';
   }
-$sql = 'INSERT INTO partituras (artista,cancion,partitura) VALUES ("Amaral","Son mis amigos","'. $texto . '")';
+ $sql = 'INSERT INTO partituras (artista,cancion,partitura) VALUES ("' . $artista . '","' . $cancion . '","'. $texto . '")';
 mysqli_query($conexion,$sql);
 echo json_encode($sql);
 }
