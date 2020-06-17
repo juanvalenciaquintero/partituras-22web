@@ -38,8 +38,36 @@ if (isset($request->param1) && ($request->param1==='buscarCancion'))
     } else
     {
       array_push($canciones,$sqlCancion);
-    }
+  }
   echo json_encode($canciones);
+}
+
+if (isset($request->param1) && ($request->param1==='grabar'))
+{
+  $datos = $request->param2;
+
+  //Primero vemos cuantas filas tiene el fichero
+  $filas = count($datos);
+  $texto = '';
+  for ($i = 1; $i < count($datos); $i++)
+  {
+    $texto .= '<p>';
+    $letras = str_split($datos[$i]);
+    for ($j=0; $j <count($letras) ; $j++) {
+
+      if ($letras[$j]===' ')
+      {
+        $texto .= '&nbsp;';
+      } else
+      {
+       $texto .=$letras[$j];
+      }
+    }
+    $texto .='</p>';
+  }
+$sql = 'INSERT INTO partituras (artista,cancion,partitura) VALUES ("Amaral","Son mis amigos","'. $texto . '")';
+mysqli_query($conexion,$sql);
+echo json_encode($sql);
 }
 
 

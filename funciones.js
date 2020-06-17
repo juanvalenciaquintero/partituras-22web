@@ -73,6 +73,7 @@ function elegirCancion()
       {
         if ((xHttp.readyState === 4) && (xHttp.status === 200))
         {
+          console.log(xHttp.responseText);
           var datos = JSON.parse(xHttp.responseText);
           console.log(datos[0]);
           var elemento = document.querySelector('#partitura');
