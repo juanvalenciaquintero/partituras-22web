@@ -1,94 +1,144 @@
-body
-{
-margin:0;
-padding:0;
-box-sizing: content-box;
-}
-
-#filtros, #botonera
-{
-  width:100%;
-  position:fixed;
-  z-index: 100;
-}
-
-#filtros
-{
-  top:0;
-  border-bottom:1px solid #cdcdcd;
-  background-color: white;
-}
-
-#botonera
-{
-  bottom:0;
-}
-
-#filtros form, #botonera, #divBtnScroll, #divBtnReset
-{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#filtros div
-{
-  width: 18%;
-}
-
-#filtros div:first-child, #filtros div:nth-child(2)
-{
-  padding:5px;
-  width: 39%;
-}
-
-#filtros div select
-{
-  max-width:90%;
-}
-
-#btnBuscar
-{
-  margin-top:16px;
-}
-
-.start
-{
-  background-color: rgb(136, 221, 8);
-}
-
-.stop
-{
-  background-color: rgb(173, 8, 8);
-  color: white;
-  font-weight: bold;
-}
-
-#partitura
-{
-  margin-top:50px;
-  padding:0 10px 0 15px;
-  width:95%;
-  /* height:1000px;
-  background:  url("./../../assets/img/wish\ you\ where\ here.jpg") no-repeatc;
-  background-size: 100% 100%;*/
-}
-
-#btnScroll, #btnMenos, #btnMas, #btnReset
-{
-  margin-top:5px;
-  margin-left:5px;
-  margin-right:5px;
-}
-
-#btnReset
-{
-}
-
-#botonera div
-{
-  width:100%;
-  padding:10px;
-  background-color: white;
-  border-top: 1px solid #cdcdcd;;
-}
+body
+{
+margin:0;
+padding:0;
+box-sizing: content-box;
+}
+
+#menuOculto
+{
+  width:200px;
+  height:auto;
+  position:fixed;
+  top:50px;
+  background-color: white;
+  border:1px solid #cdcdcd;
+}
+
+#menuOculto ul
+{
+list-style-type: none;
+}
+
+.oculto
+{
+  left:-200px;
+  opacity: 0;
+  transition: 0.5s;
+}
+.visible
+{
+  opacity: 1;
+  left: 0;
+  transition: 0.5s;
+}
+
+
+#menu
+{
+  height:50px;
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom:1px solid #cdcdcd;
+}
+
+#hamburguesa
+{
+  width:25px;
+  height:25px;
+  min-width: 30px;
+  background: url('icono-hamb.png') no-repeat;
+  background-size: contain;
+  margin:5px;
+}
+
+ #botonera
+{
+  width:100%;
+  position:fixed;
+  z-index: 100;
+}
+
+#filtros
+{
+  float: left;
+  top:0;
+  background-color: white;
+}
+
+#botonera
+{
+  bottom:0;
+}
+
+#filtros form, #botonera, #divBtnScroll, #divBtnReset
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#filtros div:first-child
+{
+  padding:5px;
+  width: 70%;
+}
+
+ #filtros div:last-child
+{
+  padding:5px;
+  width: 20%;
+}
+
+#filtros div select
+{
+  width:90%;
+  max-width:90%;
+}
+
+#btnBuscar
+{
+  margin-top:16px;
+}
+
+.start
+{
+  background-color: rgb(136, 221, 8);
+}
+
+.stop
+{
+  background-color: rgb(173, 8, 8);
+  color: white;
+  font-weight: bold;
+}
+
+#partitura
+{
+  margin-top:50px;
+  padding:0 10px 0 15px;
+  width:95%;
+  /* height:1000px;
+  background:  url("./../../assets/img/wish\ you\ where\ here.jpg") no-repeatc;
+  background-size: 100% 100%;*/
+}
+
+#btnScroll, #btnMenos, #btnMas, #btnReset
+{
+  margin-top:5px;
+  margin-left:5px;
+  margin-right:5px;
+}
+
+#btnReset
+{
+}
+
+#botonera div
+{
+  width:100%;
+  padding:10px;
+  background-color: white;
+  border-top: 1px solid #cdcdcd;;
+}
